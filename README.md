@@ -1,9 +1,19 @@
 trumps-fist
 ==============================
 
-classifying the best tweets with SCIENCE!
+Various attempts to classify Trump's tweets. In 2016, Candidate Trump used an Android to tweet and his staff used iPhones. This provides a labeled set of data that, in theory, can be used to build a model to determine who is tweeting under @realDonaldTrump.
+
+To reproduce, install docker, and nvidia-docker (assuming a GPU). Then navigate to 'docker' and type 'make notebook'. This will build a docker container and execute Jupyter Notebook. It downloads a couple of large data files. You may need to modify some of the paths for your system.
+
+See
+https://github.com/arm5077/trump-twitter-classify
+https://factba.se/blog/2017/04/07/nerdwhen-occams-razor-cuts-younerd/
+
+Tweet data from
+http://www.trumptwitterarchive.com/
 
 Project Organization
+(may not be completely filled out)
 ------------
 
     ├── LICENSE
@@ -15,6 +25,7 @@ Project Organization
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
     │
+    |   docker             <- Based on Keras' Dockerfile and must use nvidia-docker
     ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
     │
     ├── models             <- Trained and serialized models, model predictions, or model summaries
@@ -53,4 +64,4 @@ Project Organization
 
 --------
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience. Small changes made where appropriate (e.g. docker)</small></p>

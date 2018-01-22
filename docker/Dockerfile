@@ -9,6 +9,7 @@ RUN mkdir -p $CONDA_DIR && \
     echo export PATH=$CONDA_DIR/bin:'$PATH' > /etc/profile.d/conda.sh && \
     apt-get update && \
     apt-get install -y wget git libhdf5-dev g++ graphviz openmpi-bin libgl1-mesa-glx && \
+    apt-get install unzip && \
     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-4.2.12-Linux-x86_64.sh && \
     echo "c59b3dd3cad550ac7596e0d599b91e75d88826db132e4146030ef471bb434e9a *Miniconda3-4.2.12-Linux-x86_64.sh" | sha256sum -c - && \
     /bin/bash /Miniconda3-4.2.12-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
@@ -49,8 +50,10 @@ RUN git clone https://github.com/facebookresearch/fastText.git /fastText && \
     rm -rf /fastText/.git* && \
     cd /fastText && \
     make && \
-    pip install . && \
-    wget --quiet https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.en.zip
+    pip install .
+
+#some external data
+#    wget --quiet https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.en.zip 
 
 #ADD theanorc /home/keras/.theanorc
 
@@ -60,5 +63,5 @@ WORKDIR /src
 
 EXPOSE 8888
 
-CMD jupyter notebook --port=8888 --ip=192.168.1.249 --notebook-dir=/projects
+CMD jupyter notebook --port=8888 --ip=192.168.1.249 --notebook-dir=/project
 
