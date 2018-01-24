@@ -3,7 +3,18 @@ trumps-fist
 
 Various attempts to classify Trump's tweets. In 2016, Candidate Trump used an Android to tweet and his staff used iPhones. This provides a labeled set of data that, in theory, can be used to build a model to determine who is tweeting under @realDonaldTrump.
 
-To reproduce, install docker, and nvidia-docker (assuming a GPU). Then navigate to 'docker' and type 'make notebook'. This will build a docker container and execute Jupyter Notebook. It downloads a couple of large data files. You may need to modify some of the paths for your system.
+To reproduce, install docker, and nvidia-docker (assuming a GPU). Then navigate to 'docker' and type 'make notebook'. This will build a docker container and execute Jupyter Notebook. It will also attempt to mount a filesystem from the host to the container, so data can be shared. See the Makefile, essentially
+```PROJECT?="${PWD}/.."``` is defined (relative to the Makefile) and then ```-v $(PROJECT):/project``` mounts the root of 'trumps-fist' to the /project directory in the container.
+
+Data:
+Trump's tweets:
+```cd data/external; wget \
+https://github.com/bpb27/trump_tweet_data_archive/blob/master/condensed_2016.json.zip```
+
+Fasttext-based wikipedia vectors (large...):
+```cd data/external; wget \
+https://s3-us-west-1.amazonaws.com/fasttext-vectors/wiki.en.zip; unzip wiki.en.zip```
+
 
 See
 https://github.com/arm5077/trump-twitter-classify
@@ -13,8 +24,9 @@ Tweet data from
 http://www.trumptwitterarchive.com/
 
 Project Organization
-(may not be completely filled out)
+(may not be complete)
 ------------
+
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
